@@ -6,6 +6,42 @@
     <title>Document</title>
 </head>
 <body>
-   <h1>Landing Page</h1> 
-</body>
-</html>
+   <h1>Crud Operation</h1> 
+<h2>Task Manager</h2>
+<div>
+    <input type="text" id="taskInput" placeholder="Enter a task">
+    <button onclick="addTask()">Add</button>
+</div>
+<ul id="taskList"></ul>
+
+<script>
+    let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+
+    function renderTasks() {
+        const list = document.getElementById('taskList');
+        list.innerHTML = '';
+        tasks.forEach((task, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `<span>${task}</span><button class="delete-btn" onclick="deleteTask(${index})">Delete</button>`;
+            list.appendChild(li);
+        });
+    }
+
+    function addTask() {
+        const input = document.getElementById('taskInput');
+        if (input.value.trim()) {
+            tasks.push(input.value);
+            localStorage.setItem('tasks', JSON.stringify(tasks));
+            input.value = '';
+            renderTasks();
+        }
+    }
+
+    function deleteTask(index) {
+        tasks.splice(index, 1);
+        localStorage.setItem('tasks', JSON.stringify(tasks));
+        renderTasks();
+    }
+
+    renderTasks();
+</script>
