@@ -25,17 +25,24 @@
         list.innerHTML = '';
         tasks.forEach((task, index) => {
             const li = document.createElement('li');
-            li.innerHTML = `<span>${task}</span><button class="delete-btn" onclick="deleteTask(${index})">Delete</button>`;
+            li.innerHTML = `<span>${task.studentName} - ${task.fatherName} - ${task.class} - ${task.rollNumber}</span><button class="delete-btn" onclick="deleteTask(${index})">Delete</button>`;
             list.appendChild(li);
         });
     }
 
-    function addTask() {
-        const input = document.getElementById('taskInput');
-        if (input.value.trim()) {
-            tasks.push(input.value);
+    function addApplication() {
+        const studentName = document.getElementById('studentName').value.trim();
+        const fatherName = document.getElementById('fatherName').value.trim();
+        const className = document.getElementById('class').value.trim();
+        const rollNumber = document.getElementById('rollNumber').value.trim();
+
+        if (studentName && fatherName && className && rollNumber) {
+            tasks.push({ studentName, fatherName, className, rollNumber });
             localStorage.setItem('tasks', JSON.stringify(tasks));
-            input.value = '';
+            document.getElementById('studentName').value = '';
+            document.getElementById('fatherName').value = '';
+            document.getElementById('class').value = '';
+            document.getElementById('rollNumber').value = '';
             renderTasks();
         }
     }
