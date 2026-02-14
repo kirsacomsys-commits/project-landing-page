@@ -10,11 +10,11 @@ let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
         });
     }
 
-    function addApplication() {
-        const studentName = document.getElementById('studentName').value.trim();
-        const fatherName = document.getElementById('fatherName').value.trim();
-        const className = document.getElementById('class').value.trim();
-        const rollNumber = document.getElementById('rollNumber').value.trim();
+function addApplication() {
+    const studentName = document.getElementById('studentName').value.trim();
+    const fatherName = document.getElementById('fatherName').value.trim();
+    const className = document.getElementById('class').value.trim();
+    const rollNumber = document.getElementById('rollNumber').value.trim();
 
         if (studentName && fatherName && className && rollNumber) {
             tasks.push({ studentName, fatherName, className, rollNumber });
