@@ -59,11 +59,24 @@
         }
     }
 
-    function deleteTask(index) {
-        tasks.splice(index, 1);
-        localStorage.setItem('tasks', JSON.stringify(tasks));
-        renderTasks();
-    }
+    function renderTasks() {
+    const list = document.getElementById('taskList');
+    list.innerHTML = '';
+    tasks.forEach((task, index) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${task.studentName}</td>
+            <td>${task.fatherName}</td>
+            <td>${task.class}</td>
+            <td>${task.rollNumber}</td>
+            <td><button class="delete-btn" onclick="deleteTask(${index})">Delete</button></td>
+        `;
+        list.appendChild(tr);
+    });
+}
+
 
     renderTasks();
+
+
 </script>
